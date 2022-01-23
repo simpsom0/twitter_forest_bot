@@ -1,4 +1,5 @@
 # import emoji
+import random as rand
 from twitter import *
 
 # greens: 🍃 🌱 🌿 ☘️ 🍀
@@ -44,11 +45,40 @@ flowers = {
 
 # etc: 🪨 🏕
 etc = {
-    'rock'                  :'🪨',
-    'campsite'              :'🏕'
+    'rock'                  :'🪨'
 }
+
+def choose_emoji(row, col):
+    emoji = ' '
+    main_option = rand.randrange(0,14)
+    extra_option = rand.randrange(1,6)
+
+    if main_option <= 1:
+        if extra_option == 1:
+            return rand.choice(list(etc.values()))
+        elif extra_option == 2:
+            return rand.choice(list(flowers.values()))
+        else:
+            return rand.choice(list(animals.values()))
+    
+    elif main_option <= 8:
+        if extra_option == 1:
+            return rand.choice(list(greens.values()))
+        else:
+            return greens.get('pine_tree')
+    
+    return ' '
 
 # 9x7 is a good mobile fit
 # call make_tweet(message) in here after generating grid
 if __name__ == '__main__':
-    print('testing : 🌲')
+    col = 9
+    row = 7
+    output = ''
+    for i in range(row):
+        for j in range(col):
+            print('row: ' + str(i) + ' col:' + str(j))
+            output += choose_emoji(i, j) + ' '
+        output += '\n'
+
+    print(output)
