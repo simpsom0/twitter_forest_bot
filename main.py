@@ -77,8 +77,7 @@ if __name__ == '__main__':
     output = ''
     for i in range(row):
         for j in range(col):
-            print('row: ' + str(i) + ' col:' + str(j))
             output += choose_emoji(i, j) + ' '
         output += '\n'
 
-    print(output)
+    make_tweet(output)
